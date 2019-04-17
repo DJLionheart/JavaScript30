@@ -8,14 +8,25 @@
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
   <div class="controls">
-    <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> 
+    <div class="controls__section">
+      <label for="spacing">Spacing:</label>
+      <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    </div>
+    <div class="controls__section">
+      <label for="blur">Blur:</label>
+      <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    </div>
+    <div class="controls__section">
+      <label for="base">Image Height</label>
+      <input id="height" type="range" name="height" min="0" max="800" value="250" data-sizing="px">
+    </div>
+    <div class="controls__section">
+      <label for="base">Base Color</label>
+      <input id="base" type="color" name="base" value="#ffc600">
+    </div>
 
-    <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
-    <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+
   </div>
 
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
@@ -26,12 +37,14 @@
       --base: #ffc600;
       --spacing: 10px;
       --blur: 10px;
+      --height: 250px;
     }
 
     img {
       padding: var(--spacing);
       background: var(--base);
       filter: blur(var(--blur));
+      height: var(--height);
     }
 
     .hl {
@@ -54,6 +67,8 @@
       margin-bottom: 50px;
     }
 
+    .controls__
+
     input {
       width:100px;
     }
@@ -61,14 +76,14 @@
 
   <script>
     const inputs = document.querySelectorAll('.controls input')
-    
+    console.log('inputs: ', inputs)
     function handleUpdate() {
       const suffix = this.dataset.sizing || '';
       document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
-      
+
     }
     /*
-      When using CSS variables, you can update that variable on any element, and any selectors that reference that variable 
+      When using CSS variables, you can update that variable on any element, and any selectors that reference that variable
       will use it.
 
       You could also scope the variable to only apply to a certain div
